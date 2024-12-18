@@ -1,0 +1,60 @@
+$background: #1e1e2e;
+$foreground: #cdd6f4;
+
+* {
+    font-family: "Product Sans", sans-serif;
+    color: $foreground;
+}
+
+window.bar {
+    background-color: transparent;
+
+    > box {
+        margin: 8px;
+        margin-right: 16px;
+        min-width: 48px;
+
+        > box {
+            background-color: $background;
+            border-radius: 4px;
+            margin-top: 8px;
+            padding: 8px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+    }
+}
+
+.workspaces {
+    button {
+    border-radius: 50%;
+    transition: all .2s;
+    background-color: transparentize($foreground, .8);
+
+    &.occupied {
+        background-color: transparentize($foreground, .2);
+    }
+
+    &.active {
+        // background-color: $primary-bg;
+        // background-image: $active-gradient;
+    }
+}
+
+    // &.active,
+    // &:active {
+    //     label {
+    //         background-color: transparentize($primary-fg, .3);
+
+    //         &.occupied {
+    //             background-color: transparentize($primary-fg, .15);
+    //         }
+
+    //         &.active {
+    //             background-color: $primary-fg;
+    //         }
+    //     }
+    // }
+}
