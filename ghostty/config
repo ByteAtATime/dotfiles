@@ -19,6 +19,7 @@ foreground = cdd6f4
 cursor-color = f5e0dc
 selection-background = 353749
 selection-foreground = cdd6f4
+background-opacity = 0.7
 
 window-padding-x = 8
 window-padding-y = 8

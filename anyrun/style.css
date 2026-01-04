@@ -1,93 +1,101 @@
-/* ############################################################################################################ */
-/* ##   ______  __      __  _______   ________  _______    ______   __    __   ______   __    __  ________   ## */
-/* ##  /      \|  \    /  \|       \ |        \|       \  /      \ |  \  |  \ /      \ |  \  /  \|        \  ## */
-/* ## |  $$$$$$\\$$\  /  $$| $$$$$$$\| $$$$$$$$| $$$$$$$\|  $$$$$$\| $$\ | $$|  $$$$$$\| $$ /  $$| $$$$$$$$  ## */
-/* ## | $$   \$$ \$$\/  $$ | $$__/ $$| $$__    | $$__| $$| $$___\$$| $$$\| $$| $$__| $$| $$/  $$ | $$__      ## */
-/* ## | $$        \$$  $$  | $$    $$| $$  \   | $$    $$ \$$    \ | $$$$\ $$| $$    $$| $$  $$  | $$  \     ## */
-/* ## | $$   __    \$$$$   | $$$$$$$\| $$$$$   | $$$$$$$\ _\$$$$$$\| $$\$$ $$| $$$$$$$$| $$$$$\  | $$$$$     ## */
-/* ## | $$__/  \   | $$    | $$__/ $$| $$_____ | $$  | $$|  \__| $$| $$ \$$$$| $$  | $$| $$ \$$\ | $$_____   ## */
-/* ##  \$$    $$   | $$    | $$    $$| $$     \| $$  | $$ \$$    $$| $$  \$$$| $$  | $$| $$  \$$\| $$     \  ## */
-/* ##   \$$$$$$     \$$     \$$$$$$$  \$$$$$$$$ \$$   \$$  \$$$$$$  \$$   \$$ \$$   \$$ \$$   \$$ \$$$$$$$$  ## */
-/* ##                                                                                                        ## */
-/* ## Anyrun Style (Catppuccin Mocha)                                                                        ## */
-/* ## Created by Cybersnake                                                                                  ## */
-/* ############################################################################################################ */
+/* ===== Color variables ===== */
+:root {
+  --bg-color: #313244;
+  --fg-color: #cdd6f4;
+  --primary-color: #89b4fa;
+  --secondary-color: #cba6f7;
+  --border-color: var(--primary-color);
+  --selected-bg-color: var(--primary-color);
+  --selected-fg-color: var(--bg-color);
+}
 
+/* ===== Global reset ===== */
 * {
-    all: unset;
-    font-size: 1rem;
+  all: unset;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+}
+
+/* ===== Transparent window ===== */
+window {
+  background: transparent;
+}
+
+/* ===== Main container ===== */
+box.main {
+  border-radius: 16px;
+  background-color: color-mix(in srgb, var(--bg-color) 80%, transparent);
+  border: 0.5px solid color-mix(in srgb, var(--fg-color) 25%, transparent);
+  padding: 12px; /* add uniform padding around the whole box */
+}
+
+/* ===== Input field ===== */
+text {
+  font-size: 1.3rem;
+  background: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  margin-bottom: 12px;
+  padding: 5px 10px;
+  min-height: 44px;
+  caret-color: var(--primary-color);
+}
+
+/* ===== List container ===== */
+.matches {
+  background-color: transparent;
+}
+
+/* ===== Single match row ===== */
+.match {
+  font-size: 1.1rem;
+  padding: 4px 10px; /* tight vertical spacing */
+  border-radius: 6px;
+}
+
+/* Remove default label margins */
+.match * {
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+}
+
+/* Selected / hover state */
+.match:selected,
+.match:hover {
+  background-color: var(--selected-bg-color);
+  color: var(--selected-fg-color);
+}
+
+.match:selected label.plugin.info,
+.match:hover label.plugin.info {
+  color: var(--selected-fg-color);
+}
+
+.match:selected label.match.description,
+.match:hover label.match.description {
+  color: color-mix(in srgb, var(--selected-fg-color) 90%, transparent);
+}
+
+/* ===== Plugin info label ===== */
+label.plugin.info {
+  color: var(--fg-color);
+  font-size: 1rem;
+  min-width: 160px;
+  text-align: left;
+}
+
+/* ===== Description label ===== */
+label.match.description {
+  font-size: 0rem;
+  color: var(--fg-color);
+}
+
+/* ===== Fade-in animation ===== */
+@keyframes fade {
+  0% {
+    opacity: 0;
   }
-  
-#window,
-#match,
-#entry,
-#plugin,
-#main { 
-  background: transparent; 
-}
-  
-#match.activatable {
-  border-radius: 7px;
-  padding: 3px 3px;
-  margin-top: 1px;
-}
-#match.activatable:first-child { margin-top: 9px; }
-#match.activatable:last-child { margin-bottom: 1px; }
-
-#plugin:hover #match.activatable {
-  border-radius: 7px;
-  padding: .3rem;
-  margin-top: .01rem;
-  margin-bottom: 0;
-}
-
-
-#match:selected {
-  color: @theme_selected_fg_color;
-  background: @theme_selected_bg_color;
-  border-radius: 7px;
-}
-
-#entry {
-  border-radius: 7px;
-  margin: 3px;
-  padding: 5px 5px;
-  caret-color: white;
-  font-size: 20px;
-  font-weight: 700;
-}
-
-list > #plugin {
-  border-top: 1px solid rgba(255,255,255,0.3);
-  margin: 3px;
-  padding-top: 3px;
-  padding-left: 3px;
-  font-weight: 400;
-}
-
-list > #plugin:first-child { 
-  margin-top: .3rem;
-}
-
-list > #plugin:last-child { 
-  margin-bottom: .3rem; 
-}
-
-list > #plugin:hover { 
-  padding: 5px; 
-}
-
-box#main {
-  border-color: rgba(137, 180, 250, 1);    
-  color: white;
-  border-width: 4px;
-  border-style: solid;
-  margin-top: 15px;
-  background-color: rgba(30, 30, 46, 0.5);
-  border-radius: 7px;
-  padding: 5px;
-}
-
-zlabel#plugin {
-  font-size:20px;
+  100% {
+    opacity: 1;
+  }
 }
